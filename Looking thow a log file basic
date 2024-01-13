@@ -1,0 +1,18 @@
+#!/bin/env/python3
+
+import sys
+
+logfile = sys.argv[1]
+with open(logfile) as f:
+  for line in f:
+    if "CRON" not in line: # replace "" with the string you are looking for 
+      continue
+    print(line.strip())
+
+
+#this lets you look for more specific data in the log file. you dont have to run both at teh same time.
+import re
+pattern = r"USER \((\w+)\)$"
+line = "Jul 6 14:03:01 computer.name CRON[29440]: USER (naughty_user)"
+result = re.search(pattern, line)
+print(result[1])
